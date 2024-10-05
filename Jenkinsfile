@@ -8,14 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                    sh '''
-                    if [[0 -eq `docker ps | grep gincontainer`]];
-                    then
-                        echo "容器未启动"
-                    else
-                        docker stop gincontainer
-                    fi
-                    '''
+                    sh 'docker stop gincontainer'
             }
         }
         stage('Deploy') {
