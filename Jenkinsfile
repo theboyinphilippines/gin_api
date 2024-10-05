@@ -8,15 +8,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                       try{
-                                echo "第一次启动容器"
-                                sh 'docker run --rm -p 8081:8080 --name gincontainer -d gin_api:\${branch}'
-                            }catch(Throwable e){
-                                echo "容器gincontainer已经启动,现在终止容器运行"
-                                sh "docker stop gincontainer"
-                                echo "移除容器gincontainer"
-                                sh "docker rm gincontainer"
-                            }
+                    echo "容器gincontainer已经启动,现在终止容器运行"
+                    sh "docker stop gincontainer"
+                    echo "移除容器"
+                    sh "docker rm gincontainer"
             }
         }
         stage('Deploy') {
